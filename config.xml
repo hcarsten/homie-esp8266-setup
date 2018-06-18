@@ -14,8 +14,8 @@ version = "2.0.0" >
   <platform name="android" />
   <platform name="winphone" />
 
-  <icon src="public/img/logo.png" />
-  <splash src="public/img/logo.png" />
+  <icon src="public/img/logo.jpg" />
+  <splash src="public/img/logo.jpg" />
 
   <plugin name="cordova-plugin-whitelist" spec="^1.0.0" />
   <plugin name="cordova-plugin-crosswalk-webview" spec="^2.0.0" />

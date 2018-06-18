@@ -31,7 +31,7 @@ export default {
   }
 
   .tabs li.is-active a {
-    border-bottom-color: #e74c3c;
-    color: #e74c3c;
+    border-bottom-color: #0050a0;
+    color: #0050a0;
   }
 </style>

@@ -89,20 +89,25 @@ export default {
   }
 
   input:active, input:focus {
-    border-color: #e74c3c !important;
+    border-color: #0050a0 !important;
   }
 
   .checkbox:hover input:checked, .checkbox input:checked {
-    background: #e74c3c !important;
-    border-color: #CE3323 !important;
+    background: #0050a0 !important;
+    border-color: #0050a0 !important;
   }
 
   .button.is-primary {
-    background: #e74c3c;
+    background: #0050a0;
   }
 
   .button.is-primary:hover, .button.is-primary:focus {
-    background: #CE3323;
+    background: #467dbe ;
+  }
+
+  .tag{
+    background:#0050a0!important;
+    color: white;
   }
 </style>
 
