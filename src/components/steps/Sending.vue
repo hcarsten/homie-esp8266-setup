@@ -30,6 +30,7 @@ export default {
       this.apiResponse = res.data
       this.loading = false
     }).catch((err) => {
+
       this.$emit('loaded')
       if (err.response) this.apiResponse = err.response.data
       else this.apiResponse = { error: err.message }

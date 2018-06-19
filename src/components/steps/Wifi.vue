@@ -3,13 +3,13 @@
     <form @submit.prevent="sendDone">
       <p class="control">
         <label class="checkbox">
-          <input v-model="client_mode" type="radio" :value="false"/> AccessPoint Mode
-        </label>
-        <br/>
-
-        <label class="checkbox">
           <input v-model="client_mode" type="radio" :value="true"/> Client Mode
         </label>
+        <br/>
+        <label class="checkbox">
+          <input v-model="client_mode" type="radio" :value="false"/> AccessPoint Mode
+        </label>
+
       </p>
 
       <div v-if="!client_mode">
@@ -48,7 +48,7 @@
           <input v-model="json" :value="true" type="checkbox" /> JSON
         </label>
           <label class="checkbox">
-          <input v-model="http" :value="true" type="checkbox" /> HTTP
+          <input v-model="html" :value="true" type="checkbox" /> HTTP
         </label>
       </p>
         <br/>
@@ -120,13 +120,13 @@
         ssid_input: null,
         password: null,
         passwordClearText: false,
-        client_mode: false,
+        client_mode: true,
         passwordClearTextAp:false,
         wifiPasswordAp:null,
         ipAp:null,
         httpPortAp:null,
         json:true,
-        http:true,
+        html:true,
         wifiSsidAp:null
       }
     },
@@ -182,9 +182,8 @@
       },
       formIsValid: function () {
         const needPassword = typeof this.ssid_select === 'object' && this.ssid_select.encryption !== 'Open'
-
-        return this.computedSsid && (((!needPassword || this.password) && this.client_mode) || (!this.client_mode && this.wifiSsidAp
-        &&this.wifiPasswordAp && this.ipAp &&this.httpPortAp &&(this.json||this.http )))
+        return  ((this.computedSsid && ((!needPassword || this.password) && this.client_mode)) || (!this.client_mode && this.wifiSsidAp
+        &&this.wifiPasswordAp && this.ipAp &&this.httpPortAp &&(this.json||this.html )))
       }
     },
     mounted() {
@@ -198,12 +197,28 @@
     },
     methods: {
       sendDone: function () {
-        this.$emit('wifiConfig', {
-          ssid: this.computedSsid,
-          password: typeof this.ssid_select === 'object' && this.ssid_select.encryption === 'Open' ? null : this.password
-        })
+        if (this.client_mode) {
+          this.$emit('wifiConfig', {
+            mode:"client",
+            ssid: this.computedSsid,
+            password: typeof this.ssid_select === 'object' && this.ssid_select.encryption === 'Open' ? null : this.password
+          })
+          this.$emit('done')
+        }
+        else{
+          this.$emit('wifiConfig', {
+            mode:"ap",
+            ssid: this.wifiSsidAp,
+            password: typeof this.ssid_select === 'object' && this.ssid_select.encryption === 'Open' ? null : this.wifiPasswordAp,
+            ip: this.ipAp,
+            port:this.httpPortAp,
+            json:this.json,
+            html:this.html
+          })
+          this.$emit('doneGoToSendingStep')
+        }
 
-        this.$emit('done')
+
       }
     }
   }

@@ -6,7 +6,7 @@
     <div class="content">
       <connection-step @done="goToNextStep" @loading="setLoading" @loaded="stopLoading" v-if="currentStep === 1" />
       <info-step @deviceInformation="receiveDeviceInformation" @done="goToNextStep" @loading="setLoading" @loaded="stopLoading" v-if="currentStep === 2" />
-      <wifi-step @wifiConfig="receiveWifiConfig" @done="goToNextStep" @loading="setLoading" @loaded="stopLoading" v-if="currentStep === 3" />
+      <wifi-step @wifiConfig="receiveWifiConfig" @done="goToNextStep" @doneGoToSendingStep="goToSendingStep" @loading="setLoading" @loaded="stopLoading" v-if="currentStep === 3" />
       <mqtt-step @mqttConfig="receiveMqttConfig" @done="goToNextStep" v-if="currentStep === 4" />
       <settings-step :device-information="deviceInformation" @settingsConfig="receiveSettingsConfig" @done="goToNextStep" v-if="currentStep === 5" />
       <sending-step :configuration="config" @loading="setLoading" @loaded="stopLoading" v-if="currentStep === 6" />
@@ -45,6 +45,9 @@ export default {
     setLoading: function (text) {
       this.loadingText = text
       this.loading = true
+    },
+    goToSendingStep: function(){
+      this.currentStep=6;
     },
     stopLoading: function () {
       this.loading = false
