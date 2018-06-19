@@ -25,12 +25,12 @@ export default {
   props: ['configuration'],
   mounted () {
     this.$emit('loading', 'Sending configuration to the device...')
+    console.log(this.configuration)
     axios.put(`${API_URL}/config`, this.configuration).then((res) => {
       this.$emit('loaded')
       this.apiResponse = res.data
       this.loading = false
     }).catch((err) => {
-
       this.$emit('loaded')
       if (err.response) this.apiResponse = err.response.data
       else this.apiResponse = { error: err.message }
