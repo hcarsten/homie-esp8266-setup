@@ -181,9 +181,10 @@
         return null
       },
       formIsValid: function () {
+        var ipRegex=new RegExp("^([0-9]{1,3}\\.){3}[0-9]{1,3}$")
         const needPassword = typeof this.ssid_select === 'object' && this.ssid_select.encryption !== 'Open'
         return  ((this.computedSsid && ((!needPassword || this.password) && this.client_mode)) || (!this.client_mode && this.wifiSsidAp
-        &&this.wifiPasswordAp && this.ipAp &&this.httpPortAp &&(this.json||this.html )))
+        &&this.wifiPasswordAp && this.ipAp &&this.httpPortAp &&(this.json||this.html ) && ipRegex.test(this.ipAp)))
       }
     },
     mounted() {
