@@ -6,6 +6,18 @@
       </p>
 
       <ul>
+         <li>
+          <span class="icon is-small">
+            <i class="fa fa-font"></i>
+          </span>
+          <b>Produktinformationen</b>
+          <ul>
+            <li><b>Bezeichnung:</b> <span class="tag ">Noch zu implementieren</span></li>
+            <li><b>Typ:</b> <span class="tag ">Noch zu implementieren</span></li>
+            <li><b>Artikelnummer:</b> <span class="tag ">Noch zu implementieren</span></li>
+          </ul>
+        </li>
+
         <li><span class="icon is-small"><i class="fa fa-hashtag"></i></span> <b>Hardware device ID:</b> <span class="tag ">{{ apiResponse.hardware_device_id }}</span></li>
         <li><span class="icon is-small"><i class="fa fa-tag"></i></span> <b>Homie for ESP8266 version:</b> <span class="tag ">{{ apiResponse.homie_esp8266_version }}</span></li>
         <li>
